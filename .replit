@@ -1,0 +1,15 @@
+language = "python3"
+run = ""
+import os, sys
+menu = "0"
+while(menu!="2"):
+  menu= input("1 Escull fitxers/ 2 Tancar")
+  if(menu == "1" ):
+    #Open a file
+    path = "/var/www/html/"
+    dirs = os.listdir( path )
+    # This would print all the files and directories
+    for file in dirs:
+      print(file)
+    resposta= input("Quin docment vols")
+    
