@@ -17,13 +17,24 @@ while(menu!="2"):
       document = open(path+"/"+resposta,"r")
       contingut = document.read()
       print(contingut)
-      if(contingut[0] ==" moure"):
-        shutil.move(path+"/"+contingut[1] , path+"/"+ contingut[2])
-      elif(contingut[0] == "borra"):
-        os.remove(path+"/"+document[1])
-      elif(contingut == "copia"):
-        copyfile(path+"/"+contingut[1], path+"/"+contingut[2])
+      continguts=contingut.split()
+      confirmacio= input("Vols executar")
+      if(continguts[0]=="moure" and confirmacio == "si"):
+        if os.path.exists(path+"/"+continguts[1]):
+          shutil.move(path+"/"+continguts[1] , path+"/"+ continguts[2])
+        else:
+          print("El document que vols moure no existeix")
+      elif(continguts[0] == "borra"and confirmacio == "si"):
+        if os.path.exists(path+"/"+continguts[1]):
+          os.remove(path+"/"+continguts[1])
+        else:
+          print("L'arxiu que vols borrar no existeix")
+      elif(continguts[0] == "copia"and confirmacio == "si"):
+        if os.path.exists(path+"/"+continguts[1]):
+          copyfile(path+"/"+continguts[1], path+"/"+continguts[2])
+        else:
+          print("El document que vols copiar no existeix")
       document.close()
     else:
-      print("The file does not exist")
+      print("No existeix")
       resposta= input("Quin document vols")
